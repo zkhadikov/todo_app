@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import {API_URL} from "../../constants";
 
 function PostsList() {
@@ -24,7 +24,7 @@ function PostsList() {
   }
   // fetch posts from Rails API
   useEffect(() => {
-      loadPosts();
+    loadPosts();
     console.log('i fire once');
   }, []);
 
