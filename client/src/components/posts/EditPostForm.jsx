@@ -9,7 +9,7 @@ function EditPostForm() {
 
   const fetchCurrentPost = async () => {
     try {
-      const response = await fetch(`${API_URL}/${id}`);
+      const response = await fetch(`${API_URL}/posts/${id}`);
       if (response.ok) {
         const json = await response.json();
         setPost(json);
@@ -27,7 +27,7 @@ function EditPostForm() {
 
     try {
       const payload = {title: post.title, body: post.body};
-      const response = await fetch(`${API_URL}/${id}`, {
+      const response = await fetch(`${API_URL}/posts/${id}`, {
         method: "PUT",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(payload),
