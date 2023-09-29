@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
-import {API_URL} from "../../constants";
+import {fetchAllPosts, deletePost} from "../../services/postService.js";
 
 function PostsList() {
   const [state, setState] = useState({
@@ -11,16 +11,10 @@ function PostsList() {
 
   const loadPosts = async () => {
     try {
-      const response = await fetch(API_URL);
-      if (response.ok) {
-        const json = await response.json();
-        setState({posts: json, loading: false, error: null});
-      } else {
-        throw response;
-      }
-    } catch (error) {
-      setState({posts: [], loading: false, error: error});
-      console.error("error fetching posts:", error);
+      const posts = await fetchAllPosts();
+      setState({posts, loading: false, error: null});
+    } catch (e) {
+      setState({posts: [], loading: false, error: e});
     }
   }
   // fetch posts from Rails API
@@ -29,17 +23,11 @@ function PostsList() {
     console.log('i fire once');
   }, []);
 
-  const deletePost = async (id) => {
+  const handleDeletePost = async (id) => {
     try {
-      const response = await fetch(`${API_URL}/${id}`, {
-        method: "DELETE",
-      });
-      if (response.ok) {
-        const newPosts = state.posts.filter((post) => post.id !== id);
-        setState({...state, posts: newPosts});
-      } else {
-        throw response;
-      }
+      await deletePost(id);
+      const newPosts = state.posts.filter((post) => post.id !== id);
+      setState({...state, posts: newPosts});
     } catch (error) {
       console.error("error deleting post:", error);
     }
@@ -55,7 +43,7 @@ function PostsList() {
           <div className="post-links">
             <Link to={`/posts/${post.id}/edit`}>Edit</Link>
             {" | "}
-            <button onClick={() => deletePost(post.id)}>Delete</button>
+            <button onClick={() => handleDeletePost(post.id)}>Delete</button>
           </div>
         </div>
       ))}
