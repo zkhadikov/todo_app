@@ -1,6 +1,6 @@
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
-import {API_URL} from "../../constants.js";
+import {createPost} from "../../services/postService.js";
 
 function NewPostForm() {
   const [title, setTitle] = useState("");
@@ -11,16 +11,12 @@ function NewPostForm() {
     e.preventDefault();
 
     const payload = { title, body };
-    const response = await fetch(API_URL, {
-      method: "POST",
-      headers: {  "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    });
-    if (response.ok) {
-      const post = await response.json();
+
+    try {
+      const post = await createPost(payload);
       navigate(`/posts/${post.id}`);
-    } else {
-      console.error("error creating post:", response);
+    } catch (error) {
+      console.error("Failed to create post:", error);
     }
   };
 
