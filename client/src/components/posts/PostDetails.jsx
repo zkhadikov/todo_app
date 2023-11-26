@@ -7,8 +7,6 @@ function PostDetails() {
   const {id} = useParams();
   const navigate = useNavigate();
 
-
-
   useEffect(() => {
     const loadPost = async () => {
       try {
