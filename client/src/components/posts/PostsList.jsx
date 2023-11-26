@@ -1,6 +1,6 @@
-import React, {useEffect, useState} from "react";
-import {Link} from "react-router-dom";
-import {fetchAllPosts, deletePost} from "../../services/postService.js";
+import {useEffect, useState} from 'react';
+import {Link} from 'react-router-dom';
+import {fetchAllPosts, deletePost} from '../../services/postService.js';
 
 function PostsList() {
   const [state, setState] = useState({
@@ -16,7 +16,7 @@ function PostsList() {
     } catch (e) {
       setState({posts: [], loading: false, error: e});
     }
-  }
+  };
   // fetch posts from Rails API
   useEffect(() => {
     loadPosts();
@@ -29,9 +29,9 @@ function PostsList() {
       const newPosts = state.posts.filter((post) => post.id !== id);
       setState({...state, posts: newPosts});
     } catch (error) {
-      console.error("error deleting post:", error);
+      console.error('error deleting post:', error);
     }
-  }
+  };
 
   return (
     <div>
@@ -42,7 +42,7 @@ function PostsList() {
           </h2>
           <div className="post-links">
             <Link to={`/posts/${post.id}/edit`}>Edit</Link>
-            {" | "}
+            {' | '}
             <button onClick={() => handleDeletePost(post.id)}>Delete</button>
           </div>
         </div>

@@ -1,21 +1,23 @@
-import React, {useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import {Link, useNavigate, useParams} from 'react-router-dom';
-import {fetchPost, deletePost} from "../../services/postService.js";
+import {fetchPost, deletePost} from '../../services/postService.js';
 
 function PostDetails() {
   const [post, setPost] = useState(null);
   const {id} = useParams();
   const navigate = useNavigate();
 
-  const loadPost = async () => {
-    try {
-      setPost(await fetchPost(id));
-    } catch (error) {
-      console.error("error fetching posts:", error);
-    }
-  };
+
 
   useEffect(() => {
+    const loadPost = async () => {
+      try {
+        setPost(await fetchPost(id));
+      } catch (error) {
+        console.error('error fetching posts:', error);
+      }
+    };
+
     loadPost();
     console.log('i fire once');
   }, [id]);
@@ -25,7 +27,7 @@ function PostDetails() {
       await deletePost(id);
       navigate('/');
     } catch (error) {
-      console.error("error deleting post:", error);
+      console.error('error deleting post:', error);
     }
   };
 
@@ -34,9 +36,9 @@ function PostDetails() {
       <h2>{post.title}</h2>
       <p>{post.body}</p>
       <Link to={`/posts/${post.id}/edit`}>Edit</Link>
-      {" | "}
-      <Link to={`/posts`}>Back to Posts</Link>
-      {" | "}
+      {' | '}
+      <Link to={'/posts'}>Back to Posts</Link>
+      {' | '}
       <button onClick={handleDeletePost}>Delete</button>
     </div>
   );

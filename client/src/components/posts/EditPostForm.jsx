@@ -1,19 +1,11 @@
-import React, {useEffect, useState} from "react";
-import {useParams, useNavigate} from "react-router-dom";
-import {fetchPost, updatePost} from "../../services/postService.js";
+import {useEffect, useState} from 'react';
+import {useParams, useNavigate} from 'react-router-dom';
+import {fetchPost, updatePost} from '../../services/postService.js';
 
 function EditPostForm() {
   const [post, setPost] = useState(null);
   const {id} = useParams();
   const navigate = useNavigate();
-
-  const fetchCurrentPost = async () => {
-    try {
-      setPost(await fetchPost(id));
-    } catch (error) {
-      console.log(error);
-    }
-  }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -24,9 +16,17 @@ function EditPostForm() {
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
   useEffect(() => {
+    const fetchCurrentPost = async () => {
+      try {
+        setPost(await fetchPost(id));
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
     fetchCurrentPost();
   }, [id]);
 
