@@ -3,7 +3,7 @@ source "https://rubygems.org"
 ruby "3.2.2"
 
 # Use main development branch of Rails
-gem "rails", github: "rails/rails", branch: "main"
+gem "rails"
 
 # Use sqlite3 as the database for Active Record
 gem "sqlite3", "~> 1.4"
