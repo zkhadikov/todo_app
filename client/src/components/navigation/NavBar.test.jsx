@@ -7,7 +7,7 @@ describe('NavBar', () => {
     render(<NavBar />, { wrapper: MemoryRouter });
   };
 
-  it('renders both links', async () => {
+  test('renders both links', async () => {
     renderNavBar();
     const postListLink = await screen.findByTestId('post-list-link');
     const newPostLink = await screen.findByTestId('new-post-link');
