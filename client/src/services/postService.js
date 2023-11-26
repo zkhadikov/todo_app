@@ -6,7 +6,7 @@ export const fetchAllPosts = async () => {
     throw new Error(response.statusText);
   }
   return response.json();
-}
+};
 
 export const fetchPost = async (id) => {
   const response = await fetch(`${API_URL}/posts/${id}`);
@@ -14,7 +14,7 @@ export const fetchPost = async (id) => {
     throw new Error(response.statusText);
   }
   return response.json();
-}
+};
 
 export const createPost = async (postData) => {
   const response = await fetch(`${API_URL}/posts`, {
@@ -28,7 +28,7 @@ export const createPost = async (postData) => {
     throw new Error(response.statusText);
   }
   return response.json();
-}
+};
 
 export const updatePost = async (id, postData) => {
   const response = await fetch(`${API_URL}/posts/${id}`, {
@@ -42,7 +42,7 @@ export const updatePost = async (id, postData) => {
     throw new Error(response.statusText);
   }
   return response.json();
-}
+};
 
 export const deletePost = async (id) => {
   const response = await fetch(`${API_URL}/posts/${id}`, {
@@ -57,4 +57,4 @@ export const deletePost = async (id) => {
   }
 
   return response.json();
-}
+};

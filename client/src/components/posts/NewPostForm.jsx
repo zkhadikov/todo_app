@@ -1,10 +1,10 @@
-import {useState} from "react";
-import {useNavigate} from "react-router-dom";
-import {createPost} from "../../services/postService.js";
+import {useState} from 'react';
+import {useNavigate} from 'react-router-dom';
+import {createPost} from '../../services/postService.js';
 
 function NewPostForm() {
-  const [title, setTitle] = useState("");
-  const [body, setBody] = useState("");
+  const [title, setTitle] = useState('');
+  const [body, setBody] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -16,7 +16,7 @@ function NewPostForm() {
       const post = await createPost(payload);
       navigate(`/posts/${post.id}`);
     } catch (error) {
-      console.error("Failed to create post:", error);
+      console.error('Failed to create post:', error);
     }
   };
 

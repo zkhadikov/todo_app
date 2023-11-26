@@ -1,8 +1,7 @@
-import { BrowserRouter as Router } from 'react-router-dom'
-import './App.css'
-import PostsList from "./components/posts/PostsList";
-import NavBar from "./components/navigation/NavBar";
-import AppRoutes from "./components/routes/AppRoutes";
+import { BrowserRouter as Router } from 'react-router-dom';
+import NavBar from './components/navigation/NavBar';
+import AppRoutes from './components/routes/AppRoutes';
+import './App.css';
 
 function App() {
   return (
@@ -14,7 +13,7 @@ function App() {
         <AppRoutes />
       </div>
     </Router>
-  )
+  );
 }
 
-export default App
+export default App;
